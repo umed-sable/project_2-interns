@@ -4,7 +4,8 @@ const ObjectId = mongoose.Types.ObjectId;
 const internSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     email: {
         type: String,
@@ -17,7 +18,8 @@ const internSchema = new mongoose.Schema({
         type: String,
         required: true,
         match: /^(\+\d{1,3}[- ]?)?\d{10}$/,   // validate mobile number using regex
-        unique: true
+        unique: true,
+        trim: true
     },
     collegeId: {
         type: ObjectId,

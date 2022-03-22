@@ -5,12 +5,13 @@ const collegeSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
-        lowercase: true
-        // example iith
+        lowercase: true, // example iith
+        trim: true
     },
     fullName: {
         type: String,
         required: true,
+        trim: true
         // example `Indian Institute of Technology, Hyderabad`
     },
     logoLink: {

@@ -32,7 +32,7 @@ const createIntern = async (req, res) => {
     if (!isValid(email)) {
         return res.status(400).send({ status: false, message: 'Email is required' })
     }
-    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
+    if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))){
         return res.status(400).send({ status: false, message: 'Email should be valid email' })
 
     }
@@ -45,7 +45,7 @@ const createIntern = async (req, res) => {
     if (!isValid(mobile)) {
         return res.status(400).send({ status: false, message: 'Mobile number is required' })
     }
-    if(!(/^(\+\d{1,3}[- ]?)?\d{10}$/)){
+    if(!(/^(\+\d{1,3}[- ]?)?\d{10}$/.test(mobile))){
         return res.status(400).send({ status: false, message: 'Mobile number should be valid mobile number' })
 
     }
