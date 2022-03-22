@@ -9,6 +9,7 @@ const internSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        lowercase:true,
         match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ,   // validate email using regex
         unique: true
     },
@@ -20,7 +21,8 @@ const internSchema = new mongoose.Schema({
     },
     collegeId: {
         type: ObjectId,
-        ref: 'College'
+        ref: 'College',
+        required: true
         // to college model,
     },
     isDeleted: {

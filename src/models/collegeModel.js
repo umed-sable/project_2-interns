@@ -22,6 +22,6 @@ const collegeSchema = new mongoose.Schema({
         default: false
     }
 },
-    { timeseries: true })
+    { timestamps: true })
 
 module.exports = mongoose.model('College', collegeSchema);

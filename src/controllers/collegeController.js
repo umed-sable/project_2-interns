@@ -35,7 +35,7 @@ const createCollege = async (req, res) => {
 
         const collegeData = { name, fullName, logoLink };
         const newCollege = await collegeModel.create(collegeData);
-        res.status(201).send({ status: true, message: 'College got created successfully', data: newCollege });
+        res.status(201).send({ status: true, message: 'College created successfully', data: newCollege });
 
     } catch (error) {
         return res.status(500).send({
