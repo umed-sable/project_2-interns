@@ -10,10 +10,7 @@ const isValidRequestBody = (requestBody) => {
     if (Object.keys(requestBody).length) return true
     return false;
 }
-// const isValidName = (name) => {
-//     if(Object.keys(name).length) return true
-//     return false;
-//}
+
 const createCollege = async (req, res) => {
     try {
         const collegeDetails = req.body;
@@ -26,12 +23,21 @@ const createCollege = async (req, res) => {
         if (!isValid(name)) {
             return res.status(400).send({ status: false, message: 'Nmae is required' })
         }
+        const nameAlreadyUsed = await collegeModel.findOne({name})
+        if(nameAlreadyUsed){
+            return res.status(400).send({ status: false, message: ` College${name} is already registered` })
+    
+        }
 
         if (!isValid(fullName)) {
             return res.status(400).send({ status: false, message: 'fullNmae is required' })
         }
         if (!isValid(logoLink)) {
             return res.status(400).send({ status: false, message: 'LogoLink is required' })
+        }
+
+        if(logoLink.indexOf("https://functionup-stg.s3.ap-south-1.amazonaws.com/thorium/bskcm.jpg")== -1){
+            return res.status(400).send({ status: false, message: 'Only AWS S3 url allowed' })
         }
 
         const collegeData = { name, fullName, logoLink };
@@ -100,4 +106,3 @@ const getCollegeDetails = async (req, res) => {
 
 module.exports ={ createCollege, getCollegeDetails};
 
-//use findOne and put the details into a new object

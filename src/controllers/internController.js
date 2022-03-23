@@ -1,5 +1,6 @@
 const { default: mongoose } = require('mongoose');
 const internModel = require('../models/internModel')
+// const collegeModel = require('../models/collegeModel')
 
 const isValid = (value) => {
     if (typeof value === 'undefined' || value === null) return false
@@ -56,6 +57,10 @@ const createIntern = async (req, res) => {
     if(!isValid(collegeId)) {
         return res.status(400).send({ status: false, message: 'CollegeId is required' });
     }
+    // const collegeAlreadyUsed = await collegeModel.find({collegeId})
+    // if(!(collegeAlreadyUsed == collegeId)){
+    //     return res.status(400).send({ status: false, message: `This ${collegeId} doesn't exist ` })
+    // }
 
     if(!isValidObjectId(collegeId)) {
         return res.status(400).send({ status: false, message: `${collegeId} is not a valid ObjecId`});
